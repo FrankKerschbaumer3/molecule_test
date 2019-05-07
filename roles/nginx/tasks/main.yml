@@ -1,0 +1,28 @@
+---
+-
+  name: install packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  tags:
+    - install
+-
+  name: Copy Index config.
+  template:
+    src: templates/index.html.j2
+    dest: "{{ index_path }}"
+  register: var
+  tags:
+    - nginx
+-
+  name: Copy conf config.
+  template:
+    src: templates/nginx.conf.j2
+    dest: "{{ nginx_path }}"
+  register: var
+  tags:
+    - nginx
+  notify: restart nginx
+-
+  debug: msg="debug info is {{ var }}"

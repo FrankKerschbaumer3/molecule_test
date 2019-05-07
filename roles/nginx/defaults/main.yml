@@ -1,0 +1,4 @@
+---
+packages: ['nginx', 'curl']
+index_path: /var/www/html/index.html
+nginx_path: /etc/nginx/nginx.conf
