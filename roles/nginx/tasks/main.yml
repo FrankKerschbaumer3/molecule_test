@@ -15,14 +15,20 @@
   register: var
   tags:
     - nginx
--
-  name: Copy conf config.
-  template:
-    src: templates/nginx.conf.j2
-    dest: "{{ nginx_path }}"
-  register: var
-  tags:
-    - nginx
-  notify: restart nginx
+# -
+#   name: Copy conf config.
+#   template:
+#     src: templates/nginx.conf.j2
+#     dest: "{{ nginx_path }}"
+#   register: var
+#   tags:
+#     - nginx
+#   notify: restart nginx
 -
   debug: msg="debug info is {{ var }}"
+-
+  name: Ensure nginx is started and enabled to start at boot.
+  service:
+    name: nginx
+    state: started
+    enabled: yes
