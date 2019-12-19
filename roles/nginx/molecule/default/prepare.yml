@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python for Ansible
+      raw: sudo apt -y update && sudo apt install -y python python-pip python-minimal python-zipstream python-apt net-tools && pip install paramiko
+      become: true
+      changed_when: false
